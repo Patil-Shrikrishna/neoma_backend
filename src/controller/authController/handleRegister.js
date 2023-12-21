@@ -28,7 +28,31 @@ const handleRegister = async (req, res) => {
       email,
       password: encryptedPassword,
     });
+
+    // Generate a token for user and send it
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+    user.token = token;
     user.password = undefined;
+
+    // Send token in user cookie
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.status(200).cookie("token", token, options).json({
+      success: true,
+      token,
+      user,
+    });
 
     res.status(201).json(user);
   } catch (error) {
