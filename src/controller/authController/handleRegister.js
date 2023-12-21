@@ -28,19 +28,6 @@ const handleRegister = async (req, res) => {
       email,
       password: encryptedPassword,
     });
-
-    // Generate a token gor user and send it
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-    user.token = token;
     user.password = undefined;
 
     res.status(201).json(user);
