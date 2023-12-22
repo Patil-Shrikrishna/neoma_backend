@@ -7,6 +7,7 @@
 3. [Task Filter](#task-filter)
 4. [Endpoints](#endpoints)
 5. [Authentication](#authentication)
+6. [Environment Variable](#environment-variable)
 
 ### User Registration and Login
 
@@ -42,3 +43,11 @@ The API uses JWT for authentication. After successful login, the API issues a to
 **Example Authorization header:**
 
 `Authorization: YOUR_JWT_TOKEN`
+
+## Environment Variables
+
+The application utilizes certain environment variables stored in a .env file. You are required to provide these environment variables within your own .env file.
+
+- `PORT` : To set a port to run the server
+- `MONGO_URI` : To connect with mongoDB
+- `JWT_SECRET` : To provide a secret key to encrypt/decrypt the password
