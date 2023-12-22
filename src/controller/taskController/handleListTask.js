@@ -2,11 +2,10 @@ const Task = require("../../model/task.model");
 
 const handleListTask = async (req, res) => {
   const userId = req.user.id;
-  const email = req.user.email;
-  console.log(email);
+  const { filter } = req.query;
 
   try {
-    const taskList = await Task.find({ user: userId });
+    const taskList = await Task.find({ user: userId, status: filter });
     if (!taskList) {
       res.status(404).json({
         success: false,

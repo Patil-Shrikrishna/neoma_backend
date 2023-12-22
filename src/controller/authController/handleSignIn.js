@@ -10,7 +10,7 @@ const handleSignIn = async (req, res) => {
 
     // Validation check
     if (!(email && password)) {
-      res.status(400).send("All fields are require");
+      res.status(400).send("All fields are required");
     }
 
     // Find user in DB
