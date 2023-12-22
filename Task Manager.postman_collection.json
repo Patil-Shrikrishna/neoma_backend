@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "26db4f92-2253-427d-8717-9a0af106d0a5",
+		"name": "Task Manager",
+		"description": "The Task Management API provides endpoints for user registration, authentication, and CRUD operations for managing tasks. This API uses JWT (JSON Web Tokens) for user authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28986304"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"firstName\":\"john\",\r\n     \"lastName\":\"Doe\",\r\n     \"email\":\"John@email.com\",\r\n     \"password\":\"lkjhlkjh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This endpoint is used to register a new user for authentication. Upon successful registration, the server responds with a status code of 201 and returns the registered user's information along with a token for authentication.\n\n### Request Body\n\n- firstName (text, required): The first name of the user.\n- lastName (text, required): The last name of the user.\n- email (text, required): The email address of the user.\n- password (text, required): The password for the user account.\n    \n\n### Response\n\n- firstName: The first name of the registered user.\n- lastName: The last name of the registered user.\n- email: The email address of the registered user.\n- token: The authentication token for the registered user.\n- _id: The unique identifier for the registered user.\n- createdAt: The timestamp indicating when the user account was created.\n- updatedAt: The timestamp indicating when the user account was last updated.\n- __v: Version key for the user record."
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\":\"John@email.com\",\r\n     \"password\":\"lkjhlkjh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "This endpoint is used to sign in a user. The HTTP POST request should be sent to [http://localhost:3000/auth/signin](http://localhost:3000/auth/signin) with the user's email and password provided in the request body.\n\n### Request Body\n\n- email (text, required): The email of the user.\n- password (text, required): The password of the user.\n    \n\n### Response\n\nUpon successful execution, the server responds with a status code of 200 and a JSON object containing the following fields:\n\n- success (boolean): Indicates whether the sign-in was successful.\n- token (string): The authentication token for the user's session.\n- user (object): An object containing user details including _id, firstName, lastName, email, token, createdAt, updatedAt, and __v."
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Out",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/signout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signout"
+							]
+						},
+						"description": "This endpoint is used to sign out the user from the application. Upon successful execution, it returns a status code of 200 along with the message \"Logged Out\"."
+					},
+					"response": []
+				}
+			],
+			"description": "User can register using details and signin using credentials. user can signout the session."
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODU2NmIxZGNjZjNmODVhNmNjY2UxNCIsImVtYWlsIjoiSm9obkBlbWFpbC5jb20iLCJpYXQiOjE3MDMyNDE0MTgsImV4cCI6MTcwMzI0NTAxOH0.9l4_Pu3QkJP6qTEDBBvzAZSuJw1cXF44HgeXnIAt1G8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"John's second task\",\r\n    \"description\":\"This is John's second tasks description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODU2NmIxZGNjZjNmODVhNmNjY2UxNCIsImVtYWlsIjoiSm9obkBlbWFpbC5jb20iLCJpYXQiOjE3MDMyNTI4NjgsImV4cCI6MTcwMzI1NjQ2OH0.TUMrwTTrPAh--mAkgzRvGhiFUGLSmFWO_dJqXzGjwxU\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/list?filter=in-progress",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"list"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "in-progress"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of tasks. The response will include a status of 200 if the request is successful. The response body will contain a \"success\" key indicating the success status, and a \"data\" key containing an array of task objects with properties like \"_id\", \"title\", \"description\", \"status\", \"user\", \"createdAt\", \"updatedAt\", and \"__v\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODU2NmIxZGNjZjNmODVhNmNjY2UxNCIsImVtYWlsIjoiSm9obkBlbWFpbC5jb20iLCJpYXQiOjE3MDMyNDMzMTMsImV4cCI6MTcwMzI0NjkxM30.eBMRSOx3PvtmWdIcr2Z0Gdg_-dlhBhqZNJ8AOdW93qU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"658566f4dccf3f85a6ccce17\",\r\n    \"title\":\"John's first task completed\",\r\n    \"description\":\"This is John's first tasks description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"update"
+							]
+						},
+						"description": "This endpoint allows you to update a task using an HTTP PUT request. The request should include the task ID, title, and description in the raw request body.\n\n### Request Body\n\n- `_id` (string) - The ID of the task to be updated.\n- `title` (string) - The updated title of the task.\n- `description` (string) - The updated description of the task.\n    \n\n### Response\n\nUpon a successful update, the endpoint returns a status code of 200 and a JSON response with the following structure:\n\n``` json\n{\n    \"success\": true,\n    \"data\": {\n        \"acknowledged\": true,\n        \"modifiedCount\": 0,\n        \"upsertedId\": null,\n        \"upsertedCount\": 0,\n        \"matchedCount\": 0\n    }\n}\n\n ```\n\n- `success` (boolean) - Indicates if the update operation was successful.\n- `data` (object) - Contains details about the update operation, including the acknowledgment, modified count, and other relevant information."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODU2NmIxZGNjZjNmODVhNmNjY2UxNCIsImVtYWlsIjoiSm9obkBlbWFpbC5jb20iLCJpYXQiOjE3MDMyNDMzMTMsImV4cCI6MTcwMzI0NjkxM30.eBMRSOx3PvtmWdIcr2Z0Gdg_-dlhBhqZNJ8AOdW93qU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"658566ffdccf3f85a6ccce19\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/task/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"task",
+								"delete"
+							]
+						},
+						"description": "### Delete Task\n\nThis endpoint is used to delete a task.\n\n#### Request\n\n- Method: DELETE\n- URL: `http://localhost:3000/task/delete`\n- Body (raw, JSON):\n    \n    ``` json\n      {\n          \"_id\": \"\"\n      }\n    \n     ```\n    \n\n#### Response\n\n- Status: 200\n- Body:\n    \n    ``` json\n      {\n          \"success\": true,\n          \"data\": {\n              \"acknowledged\": true,\n              \"deletedCount\": 0\n          }\n      }\n    \n     ```"
+					},
+					"response": []
+				}
+			],
+			"description": "Users can perform Create, Read, Update, and Delete operations on tasks. Tasks can be filtered based on their status, including incomplete, in-progress, or completed."
+		}
+	]
+}

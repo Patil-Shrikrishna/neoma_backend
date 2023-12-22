@@ -1,7 +1,5 @@
 # Task Management API
 
-The Task Management API provides endpoints for user registration, authentication, and CRUD operations for managing tasks. This API uses JWT (JSON Web Tokens) for user authentication.
-
 ## Table of Contents
 
 1. [User Registration and Login](#user-registration-and-login)
@@ -28,15 +26,14 @@ Tasks can be filtered based on their status, including incomplete, in-progress, 
 
 - `POST /api/register`: Register a new user.
 - `POST /api/login`: Login with existing credentials to receive a JWT token.
+- `POST /api/logout`: Logout the session.
 
 ### Task Endpoints
 
-- `POST /api/tasks`: Create a new task.
-- `GET /api/tasks`: Retrieve all tasks.
-- `GET /api/tasks/:id`: Retrieve a specific task by ID.
-- `PUT /api/tasks/:id`: Update a specific task by ID.
-- `DELETE /api/tasks/:id`: Delete a specific task by ID.
-- `GET /api/tasks/filter/:status`: Filter tasks by status (incomplete, in-progress, completed).
+- `POST /task/create`: Create a new task.
+- `GET /task/list`: Retrieve all tasks and filter tasks by status (incomplete, in-progress, completed).
+- `PUT /task/update`: Update a specific task by ID.
+- `DELETE /task/delete/`: Delete a specific task by ID.
 
 ## Authentication
 
