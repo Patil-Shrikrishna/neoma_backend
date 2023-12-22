@@ -1,11 +1,13 @@
 const Task = require("../../model/task.model");
 
+const expand = (val) => (val ? { val } : {});
 const handleUpdateTask = async (req, res) => {
   const { _id, title, description, status } = req.body;
+
   try {
     const updatedTask = await Task.updateOne(
       { _id },
-      { title, description, status }
+      { ...expand(title), ...expand(description), ...expand(status) }
     );
     if (!updatedTask) {
       res.status(500).json({
