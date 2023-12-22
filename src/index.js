@@ -11,11 +11,13 @@ const app = express();
 //Middlewares
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //Routes
-app.use("/auth", require("./routes/auth"));
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/task", require("./routes/taskRoutes"));
 
 //Starting Server
 app.listen(PORT, () => {
