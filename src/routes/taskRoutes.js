@@ -5,5 +5,5 @@ const verifyUser = require("../middleware/verifyUserMiddleware");
 
 router.post("/create", verifyUser, taskController.handleCreateTask);
 router.get("/list", verifyUser, taskController.handleListTask);
-
+router.put("/update", verifyUser, taskController.handleUpdateTask);
 module.exports = router;
