@@ -26,8 +26,8 @@ Tasks can be filtered based on their status, including incomplete, in-progress, 
 ### User Endpoints
 
 - `POST /api/register`: Register a new user.
-- `POST /api/login`: Login with existing credentials to receive a JWT token.
-- `POST /api/logout`: Logout the session.
+- `POST /api/signin`: signin with existing credentials to receive a JWT token.
+- `POST /api/signout`: signout the session.
 
 ### Task Endpoints
 
